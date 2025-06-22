@@ -20,57 +20,37 @@ class RegistrationPage:
         self.submit = browser.element('#submit')
         self.registered_user = browser.all('td')
 
-    def fill_first_name(self, value):
-        self.first_name.type(value)
-
-    def fill_last_name(self, value):
-        self.last_name.type(value)
-
-    def fill_user_email(self, value):
-        self.user_email.type(value)
-
-    def fill_gender(self, value):
-        self.gender.element_by(have.value(value)).element('..').click()
-
-    def fill_user_number(self, value):
-        self.user_number.type(value)
-
-    def fill_date_of_birth(self, year, month, day):
+    def fill_user_registration_form(self, user):
+        self.first_name.type(user.first_name)
+        self.last_name.type(user.last_name)
+        self.user_email.type(user.email)
+        self.gender.element_by(have.value(user.gender)).element('..').click()
+        self.user_number.type(user.phone_number)
         browser.element('#dateOfBirthInput').click()
-        browser.element('.react-datepicker__month-select').type(month)
-        browser.element('.react-datepicker__year-select').type(year)
+        browser.element('.react-datepicker__month-select').type(user.month)
+        browser.element('.react-datepicker__year-select').type(user.year)
         browser.element(
-            f'.react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)'
+            f'.react-datepicker__day--0{user.day}:not(.react-datepicker__day--outside-month)'
         ).click()
-
-    def fill_subjects(self, value):
-        self.subjects.type(value).press_enter()
-
-    def fill_hobbies(self, value):
-        self.hobbies.element_by(have.exact_text(value)).click()
-
-    def fill_picture(self, value):
-        self.upload_pictures.send_keys(os.path.abspath(value))
-
-    def fill_current_address(self, value):
-        self.current_address.type(value)
-
-    def fill_state(self, value):
-        self.state.type(value).press_enter()
-
-    def fill_city(self, value):
-        self.city.type(value).press_enter()
-
-    def fill_submit(self):
+        self.subjects.type(user.subjects).press_enter()
+        self.hobbies.element_by(have.exact_text(user.hobbies)).click()
+        self.upload_pictures.send_keys(os.path.abspath(user.picture))
+        self.current_address.type(user.address)
+        self.state.type(user.state).press_enter()
+        self.city.type(user.city).press_enter()
         self.submit.click()
 
-    def check_registered_user(self, student_name, student_email, gender, mobile, date_of_birth, subjects, hobbies,
-                              picture, address, state_and_city):
+    def check_registered_user(self, user):
         self.registered_user.even.should(have.exact_texts(
-            student_name, student_email, gender, mobile,
-            date_of_birth, subjects,
-            hobbies, picture, address, state_and_city,
+            f'{user.first_name} {user.last_name}',
+            user.email,
+            user.gender,
+            user.phone_number,
+            f'{user.day} {user.month},{user.year}',
+            user.subjects,
+            user.hobbies,
+            user.picture,
+            user.address,
+            f'{user.state} {user.city}'
         )
         )
-
-
