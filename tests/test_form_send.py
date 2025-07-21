@@ -1,7 +1,7 @@
 import os
 import allure
 from allure_commons.types import Severity
-from selene import Browser, Config, have
+from selene import Config, have
 
 
 def test_form_send(setup_browser):
@@ -18,7 +18,7 @@ def test_form_send(setup_browser):
     setup_browser.element('[aria-label="Choose Wednesday, July 8th, 1998"]').click()
 
     setup_browser.element('#subjectsInput').type('econom').press_enter()
-    setup_browser.element('[for="hobbies-checkbox-1"]').click()
+    setup_browser.element('[for="hobbies-checkbox-1"]').scroll_into_view().click()
 
     image = 'imagetest.png'
     setup_browser.element('#uploadPicture').send_keys(os.path.abspath(image))
