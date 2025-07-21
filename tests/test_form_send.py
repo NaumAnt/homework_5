@@ -1,4 +1,6 @@
 import os
+import allure
+from allure_commons.types import Severity
 from selene import browser, have
 
 def test_form_send(setup_browser):
