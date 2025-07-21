@@ -1,9 +1,12 @@
-
+import pytest
+from selenium.webdriver import Remote
+from selenium.webdriver.chrome.options import Options
+from selene import Browser
+from selene.core.configuration import Config as SeleneConfig
+from attachment import attach
 from selene import Browser, Config
 
 
-
-import pytest
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -32,7 +35,13 @@ def setup_browser(request):
         options=options
     )
 
-    browser = Browser(Config(driver))
+    browser = Browser(
+        SeleneConfig(
+            driver=driver,
+            hold_driver_at_exit=True
+        )
+    )
+
     yield browser
 
     attach.add_screenshot(browser)
