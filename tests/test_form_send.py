@@ -21,7 +21,7 @@ def test_form_send(setup_browser):
     setup_browser.element('[for="hobbies-checkbox-1"]').perform(command.js.scroll_into_view).click()
 
     image = 'imagetest.png'
-    setup_browser.element('#uploadPicture').send_keys(os.path.abspath(image))
+    setup_browser.element('#uploadPicture').send_keys('imagetest.png')
 
     setup_browser.element('#currentAddress').type('ул. Пушкина. д.100')
     setup_browser.element('#react-select-3-input').type('raja').press_enter()
