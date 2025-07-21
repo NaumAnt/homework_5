@@ -9,7 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 
-from ATTACHMENT import attach
+from attachment import attach
 
 @pytest.fixture(scope="session", autouse=True)
 def load_env():
