@@ -17,7 +17,7 @@ def test_form_send(setup_browser):
         setup_browser.element('#dateOfBirthInput').click()
         setup_browser.element('.react-datepicker__year-select').element('option[value="1998"]').click()
         setup_browser.element('.react-datepicker__month-select').element('option[value="5"]').click()
-        setup_browser.element('[aria-label="Choose Wednesday, July 8th, 1998"]').click()
+        setup_browser.element('[aria-label="Choose Wednesday, July 8th, 1998"]').perform(command.js.scroll_into_view).click()
         setup_browser.element('#subjectsInput').type('econom').press_enter()
         setup_browser.element('[for="hobbies-checkbox-1"]').perform(command.js.scroll_into_view).click()
 
