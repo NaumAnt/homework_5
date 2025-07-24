@@ -1,11 +1,6 @@
 import pytest
 import os
-from selenium.webdriver import Remote
-from selenium.webdriver.chrome.options import Options
 from selene import browser
-from selene.core.configuration import Config as SeleneConfig
-from utils import attach
-from selene import Browser, Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
